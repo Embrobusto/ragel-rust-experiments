@@ -2,6 +2,7 @@ RAGEL_C = ragel
 RAGEL_RUST = ragel-rust
 CC = gcc
 EXECUTABLES := atoi_c
+OBJECTS := *.o
 
 all: $(EXECUTABLES)
 
