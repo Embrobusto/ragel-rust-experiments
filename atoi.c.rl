@@ -11,15 +11,16 @@
 	write data;
 }%%
 
-long long atoi( char *str )
+long long custom_atoi( char *str )
 {
 	char *p = str, *pe = str + strlen( str );
+	int cs;
 	long long val = 0;
-	bool neg = false;
+	int neg = 0;
 
 	%%{
 		action see_neg {
-			neg = true;
+			neg = 1;
 		}
 
 		action add_digit {
@@ -51,7 +52,7 @@ int main()
 {
 	char buf[BUFSIZE];
 	while ( fgets( buf, sizeof(buf), stdin ) != 0 ) {
-		long long value = atoi( buf );
+		long long value = custom_atoi( buf );
 		printf( "%lld\n", value );
 	}
 	return 0;
