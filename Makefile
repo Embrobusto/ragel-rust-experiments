@@ -1,8 +1,9 @@
 RAGEL_C = ragel
 RAGEL_RUST = ragel-rust
 CC = gcc
+EXECUTABLES := atoi_c
 
-all: atoi_c
+all: $(EXECUTABLES)
 
 clean:
 	@echo [CLEAN]
