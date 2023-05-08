@@ -3,8 +3,10 @@ RAGEL_RUST = ragel-rust
 CC = gcc
 RUSTC = rustc
 OBJECTS = atoi.o params.o
-RUST_RAGEL = $(wildcard *.rs.rl)
-EXECUTABLES = $(OBJECTS:.o=_c) $(RUST_RAGEL:.rs.rl=_rust)
+RUST_RAGEL_SOURCES = $(wildcard *.rs.rl)
+EXECUTABLES = $(OBJECTS:.o=_c) $(RUST_RAGEL_SOURCES:.rs.rl=_rust)
+INTERMEDIATES = $(RUST_RAGEL_SOURCES:.rs.rl=.rs)
+INTERMEDIATES += $(OBJECTS:.o=.c)
 KEEP_INTERMEDIATES ?= 0
 
 ifneq ($(KEEP_INTERMEDIATES),0)
@@ -25,6 +27,7 @@ clean:
 	find . -name '*.o' | xargs -n 1 rm -f
 	find . -name '*.ri' | xargs -n 1 rm -f
 	rm -f $(EXECUTABLES)
+	rm $(INTERMEDIATES)
 
 %_c: %.o
 	@echo [CC] $@
