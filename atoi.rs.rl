@@ -10,10 +10,10 @@
 fn atoi(data: &[u8]) -> i32
 {
     let mut cs: i32 = 0;
-    let mut p = 0usize;
-    let mut pe = data.len();
-    let mut val = 0i32;
-    let mut neg = false;
+    let mut p = 0usize;  // Start position
+    let mut pe = data.len();  // End position
+    let mut val = 0i32;  // Accumulated value
+    let mut neg = false;  // Negative number flag
 
     %%{
         action see_neg {
@@ -62,13 +62,3 @@ fn main() {
         println!("{}", result);
     }
 }
-
-// int main()
-// {
-//     char buf[BUFSIZE];
-//     while ( fgets( buf, sizeof(buf), stdin ) != 0 ) {
-//         long long value = atoi( buf );
-//         printf( "%lld\n", value );
-//     }
-//     return 0;
-// }
