@@ -2,7 +2,7 @@ RAGEL_C = ragel
 RAGEL_RUST = ragel-rust
 CC = gcc
 EXECUTABLES := atoi_c
-OBJECTS := *.o
+OBJECTS := atoi.o
 
 all: $(EXECUTABLES)
 
@@ -19,7 +19,6 @@ atoi_c: $(OBJECTS)
 %.c: %.c.rl
 	@echo [RAGEL_C] $<
 	@$(RAGEL_C) $< -o $*.c
-	@cat $*.c
 
 %.o: %.c
 	@echo [CC] $<
