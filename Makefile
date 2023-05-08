@@ -3,8 +3,18 @@ RAGEL_RUST = ragel-rust
 CC = gcc
 OBJECTS = atoi.o params.o
 EXECUTABLES = $(OBJECTS:.o=_c)
+KEEP_INTERMEDIATES ?= 0
 
-$(info EXECUTABLES: $(EXECUTABLES))
+ifneq ($(KEEP_INTERMEDIATES),0)
+    $(info [BUILD] Keeping intermediate sources)
+    .PRECIOUS: %.c %.rs
+else
+    $(info [BUILD] Not keeping intermediate sources)
+    .INTERMEDIATE: %.c %.rs
+endif
+
+$(info [BUILD] Intermediate $(.INTERMEDIATE))
+$(info [BUILD] Executables: $(EXECUTABLES))
 
 all: $(EXECUTABLES)
 
