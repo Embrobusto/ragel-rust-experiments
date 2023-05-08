@@ -52,11 +52,11 @@ fn main() {
     use std::io::BufRead;
     use std::convert::TryInto;
 
-    let mut buffer = String::new();
     let stdin = std::io::stdin();
     let mut handle = stdin.lock();
 
     loop {
+        let mut buffer = String::new();
         handle.read_line(&mut buffer);
         let result = atoi(buffer.as_bytes());
         println!("{}", result);
