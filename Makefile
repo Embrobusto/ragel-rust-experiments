@@ -1,8 +1,10 @@
 RAGEL_C = ragel
 RAGEL_RUST = ragel-rust
 CC = gcc
+RUSTC = rustc
 OBJECTS = atoi.o params.o
-EXECUTABLES = $(OBJECTS:.o=_c)
+RUST_RAGEL = $(wildcard *.rs.rl)
+EXECUTABLES = $(OBJECTS:.o=_c) $(RUST_RAGEL:.rs.rl=_rust)
 KEEP_INTERMEDIATES ?= 0
 
 ifneq ($(KEEP_INTERMEDIATES),0)
@@ -27,6 +29,14 @@ clean:
 %_c: %.o
 	@echo [CC] $@
 	@$(CC) -o $@ $^ -fPIC
+
+%_rust: %.rs
+	@echo [RUSTC] $@
+	@$(RUSTC) $<
+
+%.rs: %.rs.rl
+	@echo [RAGEL] $@
+	@$(RAGEL_RUST) $< -o $*.rs
 
 %.c: %.c.rl
 	@echo [RAGEL_C] $<
