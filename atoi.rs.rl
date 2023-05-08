@@ -7,7 +7,7 @@
     write data;
 }%%
 
-unsafe fn atoi(data: &[u8]) -> i32
+fn atoi(data: &[u8]) -> i32
 {
     let mut cs: i32 = 0;
     let mut p = 0usize;
