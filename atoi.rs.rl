@@ -20,6 +20,7 @@ unsafe fn atoi(data: &[u8]) -> i32
             neg = true;
         }
 
+        # Take a look at `fc`. It denotes current symbol
         action add_digit {
             val = val * 10 + (fc - ('0' as u8)) as i32;
         }
