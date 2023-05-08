@@ -49,7 +49,18 @@ fn atoi(data: &[u8]) -> i32
 const BUFSIZE: usize = 1024;
 
 fn main() {
-    println!("Compiled!");
+    use std::io::BufRead;
+    use std::convert::TryInto;
+
+    let mut buffer = String::new();
+    let stdin = std::io::stdin();
+    let mut handle = stdin.lock();
+
+    loop {
+        handle.read_line(&mut buffer);
+        let result = atoi(buffer.as_bytes());
+        println!("{}", result);
+    }
 }
 
 // int main()
