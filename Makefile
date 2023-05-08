@@ -35,7 +35,7 @@ clean:
 
 %_rust: %.rs
 	@echo [RUSTC] $@
-	@$(RUSTC) $<
+	@$(RUSTC) $< -o $@
 
 %.rs: %.rs.rl
 	@echo [RAGEL] $@
