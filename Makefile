@@ -27,7 +27,7 @@ clean:
 	find . -name '*.o' | xargs -n 1 rm -f
 	find . -name '*.ri' | xargs -n 1 rm -f
 	rm -f $(EXECUTABLES)
-	rm $(INTERMEDIATES)
+	rm -f $(INTERMEDIATES)
 
 %_c: %.o
 	@echo [CC] $@
